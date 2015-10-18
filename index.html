@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="./img/favicon.ico">
+      
+      <title>ABORTO VS CRIMEN</title>
+       <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/bootstrap-theme.css" rel="stylesheet" media="screen">
+    
+        <!--main stylesheet-->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/style.css"/>
+
+  </head>
+  <body>
+    <!-- navbar: fix active state-->
+    <div id="custom-bootstrap-menu" class="navbar navbar-custom navbar-fixed-top" role="navigation" style="background-color:#e1e1e1;">
+      <div class="container-fluid">
+        <div class="navbar-header"><a class="navbar-brand navbar-left" href="index.html" style="font-family: 'Roboto Slab';"><strong>ABORTO VS CRIMEN</strong></a>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+      </div>
+    </div><!-- nav-bar end -->
+      
+  
+        <div class="main-menu">
+            <div class="menu-inset" style="width:200px;height:318px;">
+            </div>
+            <div class="menu-options">
+                <div class="Overview" style="width:125px;height:53px;">
+                    ABORTO</div>
+                <div class="Waiting" style="width:125px;height:53px;">
+                    CRIMENES TOTALES</div>
+            </div>
+    </div>
+    <!-- includes description and play/pause buttons and dropdown -->
+    <div class="menu-info">
+    </div>
+    <br>
+    <div class="map"> <!-- map svg is drawn in main.js -->
+    </div>  
+    <div class="sequence-buttons">
+        <div class="button">
+            <button type="button" class="stepBackward">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="play">
+                <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="pause">
+               <span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="stepForward">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>  
+    <!-- end map -->
+
+    <section id="graph"></section>   
+    <div class="graph">
+    </div>  <!-- end graph -->
+
+      
+      <!--libraries-->
+        <script src="lib/d3.min.js"></script>
+        <script src="lib/queue.js"></script>
+        <script src="lib/topojson.v1.min.js"></script>
+        <script src="lib/jquery-2.1.1.min.js"></script>
+        <script src="lib/jquery.timer.js"></script>
+        <script src="lib/bootstrap.js"></script>
+  
+        
+        <!--link to main Javascript file-->
+        <script src="js/main.js"></script>      
+    </body>
+</html>
