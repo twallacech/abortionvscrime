@@ -1,6 +1,6 @@
 /****** GLOBAL VARIABLES *******/
 var mapWidth = 750, mapHeight = 410;
-var keyArray = ["1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014"];
+var keyArray = ["1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012"];
 var Category = ["gradeData", "prohibitedAfter", "counseling", "waitingPeriod", "consentData", "ultrasound"];
 var expressed;
 var yearExpressed;
@@ -12,14 +12,14 @@ var menuWidth = 200, menuHeight = 300;
 var otherMenuWidth = 200, otherMenuHeight = 70;
 var menuInfoWidth = 250, menuInfoHeight = 100;
 var textArray = ["Este mapa muestra en oscuro a todos los estados donde era legal el aborto previamente a Roe vs Wade 1973, mas claro se muestra donde era ilegal. ", "States which prohibit abortion at an earlier date than the federal law. ", "States with laws that require biased-counseling to women seeking abortion services. ","Mapa interactivo que muestra como el crimen va cambiando despues de Roe vs Wade 1973. ", "States with laws restricting young women's access to abortion services by mandating parental consent. ", "States where an ultrasound either must be performed, offered, or advised prior to an abortion. ", "Crisis Pregnancy Centers provide counseling but oppose and undermine abortion rights. ", "Abortion Providers provide counseling and do not promote abortion but help women in need of one. "]
-var linkArray = ["<a href = '#overview'> DATA</a>", "<a href = '#prohibition'>  What sort of prohibitions?</a>", "<a href = '#counseling'> What constitutes biased-counseling?</a>", "<a href = '#waiting'> DATA</a>", "<a href = '#consent'> Why is parental consent considered a restriction?</a>", "<a href = '#ultrasound'> What are the differences between these laws?</a>", "<a href = '#counseling'> Here's why.</a>"];
+var linkArray = ["<a href = '#overview'></a>", "<a href = '#prohibition'>  What sort of prohibitions?</a>", "<a href = '#counseling'> What constitutes biased-counseling?</a>", "<a href = '#waiting'></a>", "<a href = '#consent'> Why is parental consent considered a restriction?</a>", "<a href = '#ultrasound'> What are the differences between these laws?</a>", "<a href = '#counseling'> Here's why.</a>"];
 var removeCPC;
 var removeAbortion;
 var joinedJson; //Variable to store the USA json combined with all attribute data
 
 // SET UP ARRAYS FOR CATEGORIES OF EACH VARIABLE
     //Variable array for Overview
-    var arrayOverview = [  "Legal",
+    var arrayOverview = [ "Legal",
                         "Ilegal"   ];
 
     //Variable array for Prohibited At
@@ -35,11 +35,11 @@ var joinedJson; //Variable to store the USA json combined with all attribute dat
                         "No"   ];  
 
     //Variable array for Waiting Period
-    var arrayWaitingPeriod = [  "1",
-                            "2",
-                            "3",
-                            "4",
-                            "5"   ];
+    var arrayWaitingPeriod = [  "n<100k",
+                            "100k<n<250k",
+                            "250k<n<750k",
+                            "750k<n<1M",
+                            "n>1M"   ];
 
     //Variable array for Parental Consent
     var arrayConsent = [    "consent",    
@@ -54,11 +54,14 @@ var joinedJson; //Variable to store the USA json combined with all attribute dat
 
 //SET UP COLOR ARRAYS FOR EACH VARIABLE
     //Color array for Overview & Waiting Period
-    var colorArrayOverview = [  "#525252",      //Legal    //1
-                            "#737373",      //D     //2
-                            "#969696",      //C     //3
-                            "#bdbdbd",      //B     //4
-                            "#d9d9d9"   ];  //Ilegal     //5
+    var colorArrayOverview = [  "#525252", //Legal
+                                "#d9d9d9" ];  //0
+
+    var colorArrayWaiting = [  "#d9d9d9",         //1
+                             "#bdbdbd" ,     //2
+                             "#969696",       //3
+                              "#737373",      //4
+                            "#525252" ];   //5
 
     // Color array for Prohibited At
     var colorArrayProhibited = ["#525252",      //12 weeks
@@ -152,15 +155,15 @@ function setMap(){
         .projection(projection);
     
     queue()
-        .defer(d3.csv, "../data/grades.csv")
-        .defer(d3.csv, "../data/prohibitedAfter.csv")
-        .defer(d3.csv, "../data/counseling.csv")
-        .defer(d3.csv, "../data/waitingPeriod.csv")
-        .defer(d3.csv, "../data/consent.csv")
-        .defer(d3.csv, "../data/ultrasound.csv")
-        .defer(d3.json, "../data/usa.topojson")
-        .defer(d3.json, "../data/CPCs.geojson")
-        .defer(d3.json, "../data/AbortionProviders.geojson")
+        .defer(d3.csv, "/viz/data/grades.csv")
+        .defer(d3.csv, "/viz/data/prohibitedAfter.csv")
+        .defer(d3.csv, "/viz/data/counseling.csv")
+        .defer(d3.csv, "/viz/data/waitingPeriod.csv")
+        .defer(d3.csv, "/viz/data/consent.csv")
+        .defer(d3.csv, "/viz/data/ultrasound.csv")
+        .defer(d3.json, "/viz/data/usa.topojson")
+        .defer(d3.json, "/viz/data/CPCs.geojson")
+        .defer(d3.json, "/viz/data/AbortionProviders.geojson")
         .await(callback);
     
     //creates menu [overview starts on load]
@@ -275,7 +278,7 @@ function drawMenu(){
     //click changes on Overview
     $(".Overview").click(function(){ 
         expressed = Category[0];
-        yearExpressed = keyArray[keyArray.length-1];
+        yearExpressed = "1973";
         d3.selectAll(".yearExpressedText").remove();
         drawMenuInfo(colorize, yearExpressed);
         $('.stepBackward').prop('disabled', true);
@@ -290,7 +293,7 @@ function drawMenu(){
                 .text(function(d) {
                     return choropleth(d, colorize);
             });
-        createMenu(arrayOverview, colorArrayOverview, "Aborto:  ", textArray[0], linkArray[0]);
+        createMenu(arrayOverview, colorArrayOverview, "Legalidad Aborto:  ", textArray[0], linkArray[0]);
         $(".Overview").css({'background-color': '#CCCCCC','color': '#333333'});
         //removes chart
         var oldChart = d3.selectAll(".chart").remove();
@@ -358,7 +361,7 @@ function drawMenu(){
                 .text(function(d) {
                     return choropleth(d, colorize);
             });
-        createMenu(arrayWaitingPeriod, colorArrayOverview, "Crimenes Totales: ", textArray[3], linkArray[3]);
+        createMenu(arrayWaitingPeriod, colorArrayWaiting, "Numero de crimenes (n): ", textArray[3], linkArray[3]);
         $(".Waiting").css({'background-color': '#CCCCCC','color': '#333333'});
         //removes and creates correct chart
         var oldChart = d3.select(".chart").remove();
@@ -763,7 +766,7 @@ function colorScale(data){
         currentColors = colorArrayCounseling;
         currentArray = arrayCounseling;
     } else if (expressed === "waitingPeriod") {
-         currentColors = colorArrayOverview;
+         currentColors = colorArrayWaiting;
          currentArray = arrayWaitingPeriod;
     } else if (expressed === "ultrasound") {
         currentColors = colorArrayUltrasound;
@@ -790,7 +793,7 @@ function colorScaleChart(data) {
         currentColors = colorArrayCounseling;
         currentArray = arrayCounseling;
     } else if (expressed === "waitingPeriod") {
-         currentColors = colorArrayOverview;
+         currentColors = colorArrayWaiting;
          currentArray = arrayWaitingPeriod;
     } else if (expressed === "ultrasound") {
         currentColors = colorArrayUltrasound;
@@ -985,7 +988,7 @@ function highlight(data) {
     //set up the text for the dynamic labels for the map
     //labels should match the yearExpressed and the state of the law during that year
     if (expressed == "gradeData") {
-        labelAttribute = "Report Card: "+feature[expressed][Number(yearExpressed)];
+        labelAttribute = feature[expressed][Number(yearExpressed)];
     } else if (expressed == "prohibitedAfter") {
         labelAttribute = yearExpressed+"<br>Prohibited at "+feature[expressed][Number(yearExpressed)];
     } else if (expressed == "counseling") {
@@ -998,7 +1001,7 @@ function highlight(data) {
         if (feature[expressed][Number(yearExpressed)] == "None") {
             labelAttribute = yearExpressed+"<br>No mandated waiting period";
         } else {
-            labelAttribute = yearExpressed+"<br>Mandated waiting period: "+feature[expressed][Number(yearExpressed)];
+            labelAttribute = yearExpressed+"<br>"+feature[expressed][Number(yearExpressed)];
         };
     } else if (expressed == "consentData") {
         if (feature[expressed][Number(yearExpressed)] == "none") {
@@ -1020,7 +1023,7 @@ function highlight(data) {
         .append("div")
         .attr("class", "infoLabel")
         .attr("id",feature.postal+"label")
-        .attr("padding-left", 500+"px");
+        .attr("padding-left", 700+"px");
 
     var labelTitle = d3.select(".infoLabel")
         .html(labelName)
@@ -1057,7 +1060,7 @@ function highlightChart(data) {
         if (data.newLaw == "None") {
             labelAttribute = data.yearChanged+"<br>No mandated waiting period";
         } else {
-            labelAttribute = data.yearChanged+"<br>Mandated waiting period: "+data.newLaw;
+            labelAttribute = data.yearChanged+"<br>"+data.newLaw;
         };
     } else if (expressed == "consentData") {
         if (data.newLaw == "none") {
