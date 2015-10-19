@@ -55,7 +55,7 @@ var joinedJson; //Variable to store the USA json combined with all attribute dat
 //SET UP COLOR ARRAYS FOR EACH VARIABLE
     //Color array for Overview & Waiting Period
     var colorArrayOverview = [  "#525252", //Legal
-                                "#d9d9d9" ];  //0
+                                "#d9d9d9" ];  //Ilegal
 
     var colorArrayWaiting = [  "#d9d9d9",         //1
                              "#bdbdbd" ,     //2
