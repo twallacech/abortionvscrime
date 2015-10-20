@@ -54,14 +54,14 @@ var joinedJson; //Variable to store the USA json combined with all attribute dat
 
 //SET UP COLOR ARRAYS FOR EACH VARIABLE
     //Color array for Overview & Waiting Period
-    var colorArrayOverview = [  "#525252", //Legal
-                                "#d9d9d9" ];  //Ilegal
+    var colorArrayOverview = [  "#990000", //Legal
+                                "#d69999" ];  //Ilegal
 
-    var colorArrayWaiting = [  "#d9d9d9",         //1
-                             "#bdbdbd" ,     //2
-                             "#969696",       //3
-                              "#737373",      //4
-                            "#525252" ];   //5
+    var colorArrayWaiting = [  "#d69999",         //1
+                             "#cc7f7f" ,     //2
+                             "#c16666",       //3
+                              "#ad3232",      //4
+                            "#990000" ];   //5
 
     // Color array for Prohibited At
     var colorArrayProhibited = ["#525252",      //12 weeks
@@ -124,7 +124,7 @@ $(function(){
 //start function for website
 function initialize(){
     expressed = Category[0];
-    yearExpressed = keyArray[keyArray.length-1];
+    yearExpressed = "1973";
     animateMap(yearExpressed, colorize, yearExpressedText);
     setMap();
     createMenu(arrayOverview, colorArrayOverview, "Aborto:  ", textArray[0], linkArray[0]);
