@@ -155,15 +155,15 @@ function setMap(){
         .projection(projection);
     
     queue()
-        .defer(d3.csv, "../data/grades.csv")
-        .defer(d3.csv, "../data/prohibitedAfter.csv")
-        .defer(d3.csv, "../data/counseling.csv")
-        .defer(d3.csv, "../data/waitingPeriod.csv")
-        .defer(d3.csv, "../data/consent.csv")
-        .defer(d3.csv, "../data/ultrasound.csv")
-        .defer(d3.json, "../data/usa.topojson")
-        .defer(d3.json, "../data/CPCs.geojson")
-        .defer(d3.json, "../data/AbortionProviders.geojson")
+        .defer(d3.csv, "twallacech95.github.io/data/grades.csv")
+        .defer(d3.csv, "twallacech95.github.io/data/prohibitedAfter.csv")
+        .defer(d3.csv, "twallacech95.github.io/data/counseling.csv")
+        .defer(d3.csv, "twallacech95.github.io/data/waitingPeriod.csv")
+        .defer(d3.csv, "twallacech95.github.io/data/consent.csv")
+        .defer(d3.csv, "twallacech95.github.io/data/ultrasound.csv")
+        .defer(d3.json, "twallacech95.github.io/data/usa.topojson")
+        .defer(d3.json, "twallacech95.github.io/data/CPCs.geojson")
+        .defer(d3.json, "twallacech95.github.io/data/AbortionProviders.geojson")
         .await(callback);
     
     //creates menu [overview starts on load]
