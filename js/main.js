@@ -155,15 +155,15 @@ function setMap(){
         .projection(projection);
     
     queue()
-        .defer(d3.csv, "/viz/data/grades.csv")
-        .defer(d3.csv, "/viz/data/prohibitedAfter.csv")
-        .defer(d3.csv, "/viz/data/counseling.csv")
-        .defer(d3.csv, "/viz/data/waitingPeriod.csv")
-        .defer(d3.csv, "/viz/data/consent.csv")
-        .defer(d3.csv, "/viz/data/ultrasound.csv")
-        .defer(d3.json, "/viz/data/usa.topojson")
-        .defer(d3.json, "/viz/data/CPCs.geojson")
-        .defer(d3.json, "/viz/data/AbortionProviders.geojson")
+        .defer(d3.csv, "/visualizacion/data/grades.csv")
+        .defer(d3.csv, "/visualizacion/data/prohibitedAfter.csv")
+        .defer(d3.csv, "/visualizacion/data/counseling.csv")
+        .defer(d3.csv, "/visualizacion/data/waitingPeriod.csv")
+        .defer(d3.csv, "/visualizacion/data/consent.csv")
+        .defer(d3.csv, "/visualizacion/data/ultrasound.csv")
+        .defer(d3.json, "/visualizacion/data/usa.topojson")
+        .defer(d3.json, "/visualizacion/data/CPCs.geojson")
+        .defer(d3.json, "/visualizacion/data/AbortionProviders.geojson")
         .await(callback);
     
     //creates menu [overview starts on load]
